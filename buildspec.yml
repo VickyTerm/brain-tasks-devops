@@ -24,6 +24,8 @@ phases:
 
   post_build:
     commands:
+      - echo "=== Checking Runtime Identity ==="
+      - aws sts get-caller-identity
       - echo "=== Pushing Image to ECR ==="
       - docker push $ECR_REPO_URI:$IMAGE_TAG
       - docker push $ECR_REPO_URI:latest
