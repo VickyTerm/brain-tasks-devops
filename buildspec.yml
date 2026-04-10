@@ -2,24 +2,39 @@ version: 0.2
 
 env:
   variables:
-    AWS_REGION: ap-south-1
-    IMAGE_REPO_NAME: brain-tasks-app
-    IMAGE_TAG: latest
+    AWS_REGION: "ap-south-1"
+    ECR_REPO_URI: "800618366722.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app"
+    EKS_CLUSTER_NAME: "brain-tasks-cluster"
+    DEPLOYMENT_NAME: "brain-tasks-deployment"
+    CONTAINER_NAME: "brain-tasks-app"
 
 phases:
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 800618366722.dkr.ecr.ap-south-1.amazonaws.com
+      - echo "=== Logging in to Amazon ECR ==="
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REPO_URI
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c1-7)
+      - echo "Image tag will be → $IMAGE_TAG"
 
   build:
     commands:
-      - echo Build started on `date`
-      - docker build -t $IMAGE_REPO_NAME .
-      - docker tag $IMAGE_REPO_NAME:latest 800618366722.dkr.ecr.ap-south-1.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - echo "=== Building Docker Image ==="
+      - docker build -t $ECR_REPO_URI:$IMAGE_TAG .
+      - docker tag $ECR_REPO_URI:$IMAGE_TAG $ECR_REPO_URI:latest
 
   post_build:
     commands:
-      - echo Pushing the Docker image...
-      - docker push 800618366722.dkr.ecr.ap-south-1.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-      - echo Build completed on `date`
+      - echo "=== Pushing Image to ECR ==="
+      - docker push $ECR_REPO_URI:$IMAGE_TAG
+      - docker push $ECR_REPO_URI:latest
+
+      - echo "=== Configuring kubectl for EKS ==="
+      - aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
+
+      - echo "=== Deploying to EKS ==="
+      - kubectl set image deployment/$DEPLOYMENT_NAME $CONTAINER_NAME=$ECR_REPO_URI:$IMAGE_TAG
+
+      - echo "=== Verifying Rollout ==="
+      - kubectl rollout status deployment/$DEPLOYMENT_NAME
+
+      - echo "=== Deployment Complete ==="
