@@ -1,0 +1,166 @@
+[Container] 2026/04/10 06:58:17.137487 Running on CodeBuild On-demand
+[Container] 2026/04/10 06:58:17.137498 Waiting for agent ping
+[Container] 2026/04/10 06:58:18.241837 Waiting for DOWNLOAD_SOURCE
+[Container] 2026/04/10 06:58:23.375702 Phase is DOWNLOAD_SOURCE
+[Container] 2026/04/10 06:58:23.379296 CODEBUILD_SRC_DIR=/codebuild/output/src1658360653/src/github.com/VickyTerm/brain-tasks-devops
+[Container] 2026/04/10 06:58:23.379891 YAML location is /codebuild/output/src1658360653/src/github.com/VickyTerm/brain-tasks-devops/buildspec.yml
+[Container] 2026/04/10 06:58:23.382129 Setting HTTP client timeout to higher timeout for Github and GitHub Enterprise sources
+[Container] 2026/04/10 06:58:23.382257 Processing environment variables
+[Container] 2026/04/10 06:58:24.467945 No runtime version selected in buildspec.
+[Container] 2026/04/10 06:58:24.520679 Moving to directory /codebuild/output/src1658360653/src/github.com/VickyTerm/brain-tasks-devops
+[Container] 2026/04/10 06:58:24.520712 Cache is not defined in the buildspec
+[Container] 2026/04/10 06:58:25.022742 Skip cache due to: no paths specified to be cached
+[Container] 2026/04/10 06:58:25.023158 Registering with agent
+[Container] 2026/04/10 06:58:25.559282 Phases found in YAML: 3
+[Container] 2026/04/10 06:58:25.559304  PRE_BUILD: 2 commands
+[Container] 2026/04/10 06:58:25.559309  BUILD: 3 commands
+[Container] 2026/04/10 06:58:25.559313  POST_BUILD: 3 commands
+[Container] 2026/04/10 06:58:25.559593 Phase complete: DOWNLOAD_SOURCE State: SUCCEEDED
+[Container] 2026/04/10 06:58:25.559612 Phase context status code:  Message: 
+[Container] 2026/04/10 06:58:26.595818 Entering phase INSTALL
+[Container] 2026/04/10 06:58:27.117728 Phase complete: INSTALL State: SUCCEEDED
+[Container] 2026/04/10 06:58:27.117749 Phase context status code:  Message: 
+[Container] 2026/04/10 06:58:27.148664 Entering phase PRE_BUILD
+[Container] 2026/04/10 06:58:27.648047 Running command echo Logging in to Amazon ECR...
+Logging in to Amazon ECR...
+
+[Container] 2026/04/10 06:58:27.655719 Running command aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 800618366722.dkr.ecr.ap-south-1.amazonaws.com
+
+WARNING! Your credentials are stored unencrypted in '/root/.docker/config.json'.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/go/credential-store/
+
+Login Succeeded
+
+[Container] 2026/04/10 06:58:38.717746 Phase complete: PRE_BUILD State: SUCCEEDED
+[Container] 2026/04/10 06:58:38.717769 Phase context status code:  Message: 
+[Container] 2026/04/10 06:58:38.748973 Entering phase BUILD
+[Container] 2026/04/10 06:58:38.750146 Running command echo Build started on `date`
+Build started on Fri Apr 10 06:58:38 AM UTC 2026
+
+[Container] 2026/04/10 06:58:38.760685 Running command docker build -t $IMAGE_REPO_NAME .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 215B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/nginx:alpine
+#2 DONE 2.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 318.18kB 0.0s done
+#4 DONE 0.0s
+
+#5 [1/4] FROM docker.io/library/nginx:alpine@sha256:645eda1c2477aaa9b879f73909b9222c6f19798dd45be6706268d82a661c6e6d
+#5 resolve docker.io/library/nginx:alpine@sha256:645eda1c2477aaa9b879f73909b9222c6f19798dd45be6706268d82a661c6e6d 0.0s done
+#5 sha256:645eda1c2477aaa9b879f73909b9222c6f19798dd45be6706268d82a661c6e6d 10.33kB / 10.33kB done
+#5 sha256:5bd7bd52e5bcab15a093466b90e37472b0d0c0081052522afb8924cbdaf15f56 12.32kB / 12.32kB done
+#5 sha256:c1263cc56873d66f381fd07149aa0dc7244dd7c941334cd18473c46509f08465 2.50kB / 2.50kB done
+#5 sha256:f03becc8ac15611cfcc421c977a5ba4d65456093570788523a4ba557689aa7f7 0B / 1.87MB 0.2s
+#5 sha256:ff9f59a6a62e9e9f29d7a84fb18865b45664d3f0d061eff7548bd61746dd101c 0B / 957B 0.2s
+#5 sha256:15e759724ff67f262e38bb7c070af9d0b84f959f9b37fa966f68bf2f881a4b62 0B / 627B 0.2s
+#5 extracting sha256:f03becc8ac15611cfcc421c977a5ba4d65456093570788523a4ba557689aa7f7
+#5 sha256:f03becc8ac15611cfcc421c977a5ba4d65456093570788523a4ba557689aa7f7 1.87MB / 1.87MB 0.7s done
+#5 extracting sha256:f03becc8ac15611cfcc421c977a5ba4d65456093570788523a4ba557689aa7f7 0.1s done
+#5 sha256:a71873b303e8d75170b7ced2725b01b3ae15ad76f0d4eef16a49335821b6a0ef 0B / 404B 0.8s
+#5 extracting sha256:15e759724ff67f262e38bb7c070af9d0b84f959f9b37fa966f68bf2f881a4b62 done
+#5 sha256:15e759724ff67f262e38bb7c070af9d0b84f959f9b37fa966f68bf2f881a4b62 627B / 627B 1.0s done
+#5 sha256:34dfdd2ef1f920d0054dde2fc09ddc83ff8e71d05fadb79e2cab6e6234596f0a 0B / 1.21kB 1.1s
+#5 sha256:ff9f59a6a62e9e9f29d7a84fb18865b45664d3f0d061eff7548bd61746dd101c 957B / 957B 1.2s
+#5 sha256:ff9f59a6a62e9e9f29d7a84fb18865b45664d3f0d061eff7548bd61746dd101c 957B / 957B 1.2s done
+#5 extracting sha256:ff9f59a6a62e9e9f29d7a84fb18865b45664d3f0d061eff7548bd61746dd101c done
+#5 sha256:c8a2fa3a88d244a3f32dcbc9c1f7649c662661a28c624198ada43aa0b7598e7f 0B / 1.40kB 1.3s
+#5 extracting sha256:a71873b303e8d75170b7ced2725b01b3ae15ad76f0d4eef16a49335821b6a0ef done
+#5 sha256:a71873b303e8d75170b7ced2725b01b3ae15ad76f0d4eef16a49335821b6a0ef 404B / 404B 1.4s done
+#5 sha256:1165b869c51a1a0747d78cec8fab96c30156a979e51ecf2f91aa792e557d94a4 0B / 20.25MB 1.5s
+#5 extracting sha256:34dfdd2ef1f920d0054dde2fc09ddc83ff8e71d05fadb79e2cab6e6234596f0a
+#5 sha256:34dfdd2ef1f920d0054dde2fc09ddc83ff8e71d05fadb79e2cab6e6234596f0a 1.21kB / 1.21kB 1.6s done
+#5 extracting sha256:34dfdd2ef1f920d0054dde2fc09ddc83ff8e71d05fadb79e2cab6e6234596f0a done
+#5 sha256:c8a2fa3a88d244a3f32dcbc9c1f7649c662661a28c624198ada43aa0b7598e7f 1.40kB / 1.40kB 1.8s done
+#5 sha256:1165b869c51a1a0747d78cec8fab96c30156a979e51ecf2f91aa792e557d94a4 2.10MB / 20.25MB 2.0s
+#5 extracting sha256:c8a2fa3a88d244a3f32dcbc9c1f7649c662661a28c624198ada43aa0b7598e7f done
+#5 sha256:1165b869c51a1a0747d78cec8fab96c30156a979e51ecf2f91aa792e557d94a4 9.44MB / 20.25MB 2.1s
+#5 sha256:1165b869c51a1a0747d78cec8fab96c30156a979e51ecf2f91aa792e557d94a4 18.87MB / 20.25MB 2.2s
+#5 extracting sha256:1165b869c51a1a0747d78cec8fab96c30156a979e51ecf2f91aa792e557d94a4
+#5 sha256:1165b869c51a1a0747d78cec8fab96c30156a979e51ecf2f91aa792e557d94a4 20.25MB / 20.25MB 2.2s done
+#5 extracting sha256:1165b869c51a1a0747d78cec8fab96c30156a979e51ecf2f91aa792e557d94a4 0.7s done
+#5 DONE 3.1s
+
+#6 [2/4] RUN rm /etc/nginx/conf.d/default.conf
+#6 DONE 0.9s
+
+#7 [3/4] COPY default.conf /etc/nginx/conf.d/
+#7 DONE 0.1s
+
+#8 [4/4] COPY dist/ /usr/share/nginx/html
+#8 DONE 0.1s
+
+#9 exporting to image
+#9 exporting layers 0.0s done
+#9 writing image sha256:af8cca10bc8ff7c95b3d6f61ede88cb4ae1867ed3f11d428b3f3417a972cfcf5 done
+#9 naming to docker.io/library/brain-tasks-app done
+#9 DONE 0.1s
+
+[Container] 2026/04/10 06:58:45.688525 Running command docker tag $IMAGE_REPO_NAME:latest 800618366722.dkr.ecr.ap-south-1.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+
+[Container] 2026/04/10 06:58:45.712417 Phase complete: BUILD State: SUCCEEDED
+[Container] 2026/04/10 06:58:45.712436 Phase context status code:  Message: 
+[Container] 2026/04/10 06:58:45.745006 Entering phase POST_BUILD
+[Container] 2026/04/10 06:58:45.746033 Running command echo Pushing the Docker image...
+Pushing the Docker image...
+
+[Container] 2026/04/10 06:58:45.753518 Running command docker push 800618366722.dkr.ecr.ap-south-1.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+The push refers to repository [800618366722.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app]
+d44d02f047fc: Preparing
+d51a09c2d457: Preparing
+6f08c9fc10f5: Preparing
+3d4a088932cf: Preparing
+9f6dabb2aee2: Preparing
+2fe86858894f: Preparing
+0e7bffb1d445: Preparing
+f365cb491667: Preparing
+bdb037c8c9ed: Preparing
+6e27cbd26acb: Preparing
+989e799e6349: Preparing
+2fe86858894f: Waiting
+0e7bffb1d445: Waiting
+f365cb491667: Waiting
+bdb037c8c9ed: Waiting
+6e27cbd26acb: Waiting
+989e799e6349: Waiting
+9f6dabb2aee2: Layer already exists
+3d4a088932cf: Layer already exists
+2fe86858894f: Layer already exists
+0e7bffb1d445: Layer already exists
+f365cb491667: Layer already exists
+bdb037c8c9ed: Layer already exists
+6e27cbd26acb: Layer already exists
+989e799e6349: Layer already exists
+6f08c9fc10f5: Pushed
+d51a09c2d457: Pushed
+d44d02f047fc: Pushed
+latest: digest: sha256:95560e7819bd3d630997886e9eb3823ec9dfc1acd20a981d0f78fd7d5d3235db size: 2613
+
+[Container] 2026/04/10 06:58:46.700305 Running command echo Build completed on `date`
+Build completed on Fri Apr 10 06:58:46 AM UTC 2026
+
+[Container] 2026/04/10 06:58:46.709204 Phase complete: POST_BUILD State: SUCCEEDED
+[Container] 2026/04/10 06:58:46.709241 Phase context status code:  Message: 
+[Container] 2026/04/10 06:58:46.764336 Set report auto-discover timeout to 5 seconds
+[Container] 2026/04/10 06:58:46.764388 Expanding base directory path:  .
+[Container] 2026/04/10 06:58:46.768324 Assembling file list
+[Container] 2026/04/10 06:58:46.768338 Expanding .
+[Container] 2026/04/10 06:58:46.771454 Expanding file paths for base directory .
+[Container] 2026/04/10 06:58:46.771466 Assembling file list
+[Container] 2026/04/10 06:58:46.771470 Expanding **/*
+[Container] 2026/04/10 06:58:46.775033 No matching auto-discover report paths found
+[Container] 2026/04/10 06:58:46.775049 Report auto-discover file discovery took 0.010713 seconds
+[Container] 2026/04/10 06:58:46.775095 Phase complete: UPLOAD_ARTIFACTS State: SUCCEEDED
+[Container] 2026/04/10 06:58:46.775120 Phase context status code:  Message: 
+
+
